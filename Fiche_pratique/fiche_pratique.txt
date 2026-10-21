@@ -1,0 +1,75 @@
+POUR VERIFIER LA STRUCTURE DES DONNÉES DANS MOTHERDUCK POUR RETROUVER LES TABLES 
+
+# Vérifier toutes les tables de tous les schémas dans MotherDuck
+tables_globales = con.execute("""
+    SELECT table_schema, table_name 
+    FROM information_schema.tables 
+    WHERE table_name LIKE '%meteo%'
+;""").df()
+
+
+# Chercher toutes les tables contenant "meteo" dans n'importe quelle base/schéma
+df_tables = con.execute("""
+    SELECT database_name, schema_name, table_name 
+    FROM duckdb_tables() 
+    WHERE table_name LIKE '%meteo%'
+""").df()
+
+print(df_tables)
+
+======================================
+SYNTHAX pour supprimer un dossier : con.execute("DROP DATABASE IF EXISTS meteo_db;")
+
+======================================
+
+POUR MONTRER LES TABLES DISPONIBLES : 
+
+tables = con.execute("SHOW TABLES;").df()
+print(tables.head(20))
+
+2 - POUR VOIR L'ARBORESCANCE DU DOSSIER dans le terminale : tree 
+
+(.venv) comptacassines@MacBook-Air-de-Compta my_etl_project % tree
+.
+├── __pycache__
+│   ├── Icon\015
+│   └── requet_sql.cpython-314.pyc
+├── API
+│   ├── __pycache__
+│   │   ├── Icon\015
+│   │   ├── meteo_dlt.cpython-314.pyc
+│   │   └── meteo.cpython-314.pyc
+│   ├── import_meteo.py
+│   ├── meteo_dlt.py
+│   └── meteo.py
+├── app.py
+├── Data
+│   ├── Cassines_bdd - Ventes.csv
+│   ├── raw_meteo.csv
+│   └── Ventes_meteo.csv
+├── exploration_data.ipynb
+├── Fiche_pratique
+│   └── fiche_pratique.txt
+├── logs
+│   ├── Icon\015
+│   └── pipeline.log
+├── main_1.py
+├── main_2.py
+├── main_3.py
+├── main_4.py
+├── md:
+├── requirements.txt
+├── sql
+│   ├── 01_clean_ventes.sql
+│   ├── 02_1_clean_meteo.sql
+│   ├── 02_audit_ventes.sql
+│   ├── 03_join_ventes_meteo.sql
+│   └── 04_kpi_sales.sql
+└── utils
+    ├── __pycache__
+    │   ├── Icon\015
+    │   └── logger.cpython-314.pyc
+    ├── Icon\015
+    └── logger.py
+
+10 directories, 31 files

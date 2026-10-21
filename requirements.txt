@@ -1,0 +1,8 @@
+requests
+pandas
+duckdb
+python-dotenv
+ipykernel
+nbformat
+streamlit
+plotly

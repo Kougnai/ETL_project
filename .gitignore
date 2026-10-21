@@ -1,0 +1,19 @@
+# Configuration & Environnements
+.env
+.venv/
+
+# Fichiers Python / Caches
+__pycache__/
+*.pyc
+
+# Bases de données & Fichiers de données
+*.duckdb
+Data/
+
+# Logs & Fichiers système macOS / Drive
+logs/
+.DS_Store
+Icon?
+
+# Ignorer uniquement les données ou clés éventuellement générées dans API/
+# (Laisser API/ suivi par Git pour tes scripts .py)
